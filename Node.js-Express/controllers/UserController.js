@@ -13,6 +13,11 @@ export const register = async (req, res) => {
 
         const hash = await bcrypt.hash(req.body.password, await bcrypt.genSalt(10));
 
+        var checkAdmin = false;
+        if (req.body.admin) {
+            checkAdmin = true;
+        }
+
         const doc = new UserModel({
             email: req.body.email,
             firstName: req.body.firstName,
@@ -21,6 +26,7 @@ export const register = async (req, res) => {
             birthDate: req.body.birthDate,
             phoneNumber: req.body.phoneNumber,
             passwordHash: hash,
+            admin: checkAdmin
         });
 
         const user = await doc.save();
@@ -28,6 +34,7 @@ export const register = async (req, res) => {
         const token = jwt.sign(
             {
                 _id: user._id,
+                admin: user.admin,
             },
             'secret123',
             {
@@ -71,6 +78,7 @@ export const login = async (req, res) => {
         const token = jwt.sign(
             {
                 _id: user._id,
+                admin: user.admin,
             },
             'secret123',
             {

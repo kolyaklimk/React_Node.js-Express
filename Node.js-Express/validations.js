@@ -20,17 +20,19 @@ export const loginValidator = [
 ];
 
 export const categoryValidator = [
-    body('name', 'Name should be more then 5 symbols and less than 50').isLength({ min: 5, max: 50 })
+    body('name', 'Name should be more then 5 symbols and less than 50').isLength({ min: 3, max: 50 })
 ];
 
 export const roomValidator = [
-    body('price', 'Name should be less than 0.01').isFloat({ min: 0.01 })
+    body('price', 'Price should be less than 0.01').isFloat({ min: 0.01 }),
+    body('capacity', 'Capacity should be less than 1').isInt({ min: 1 }),
+    body('name', 'Name should be more then 5 symbols and less than 50').isLength({ min: 3, max: 50 })
 ];
 
 export const bookingValidator = [
     body('checkInDate', 'Error checkInDate').isDate(),
     body('checkOutDate', 'Error checkOutDate').isDate(),
-    body('checkOutDate', 'checkOutDate should be more then checkInDate').custom((value) => {
+    body('checkOutDate', 'CheckOutDate should be more then CheckInDate').custom((value) => {
         const checkInDate = bookingSchema.path('checkInDate').get();
         return new Date(value) > new Date(checkInDate);
     }),

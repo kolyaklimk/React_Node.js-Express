@@ -5,8 +5,16 @@ export default (req, res, next) => {
     if (token) {
         try {
             const decoded = jwt.verify(token, 'secret123');
-            req.userId = decoded._id;
-            next();
+            console.log(decoded._id);
+            console.log(decoded.admin);
+            if (decoded.admin) {
+                next();
+            }
+            else {
+                return res.status(403).json({
+                    message: 'No access',
+                });
+            }
         }
         catch (err) {
             return res.status(403).json({
