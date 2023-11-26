@@ -1,27 +1,16 @@
 import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
-    fullName: {
-        type: String,
-        require: true,
-    },
-    email: {
-        type: String,
-        require: true,
-        unique: true,
-    },
-    passwordHash: {
-        type: String,
-        require: true,
-    },
-    admin: {
-        type: Boolean,
-        default: false,
-    }
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    patronymic: { type: String, required: true },
+    birthDate: { type: Date, required: true },
+    phoneNumber: { type: String, required: true },
+    email: { type: String, require: true, unique: true },
+    passwordHash: { type: String, require: true },
+    admin: { type: Boolean, default: false }
 },
-    {
-        timestamps:true,
-    }
+    { timestamps: true, }
 );
 
 export default mongoose.model('User', UserSchema);

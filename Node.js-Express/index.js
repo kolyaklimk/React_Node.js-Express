@@ -1,6 +1,6 @@
 ﻿import express from 'express';
 import mongoose from 'mongoose';
-import * as Validator  from './validations/auth.js';
+import * as Validator  from './validations.js';
 import * as UserController from './controllers/UserController.js'
 import checkAuth from './utilities/checkAuth.js'
 
