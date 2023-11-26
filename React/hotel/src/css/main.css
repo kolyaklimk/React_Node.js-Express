@@ -1,0 +1,120 @@
+#top{
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#top::before{
+    content:'';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 200px;
+    width: 100%;
+    background:linear-gradient(to top, rgb(255, 248, 225),transparent);
+    z-index: 10;
+}
+.my-img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    }
+
+#text{
+    position: relative;
+    font-size: 10rem;
+}
+
+
+.content {
+    display: flex;
+}
+
+.text {
+    flex: 1;
+    padding: 10px;
+    position: static;
+    width: 60vw;
+    background-color: rgb(250, 240, 202);
+    box-shadow: rgba(191, 180, 140, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    margin: 0 30px 0 30px;
+    border-radius: 24px;
+}
+
+    .text h2 {
+        font-size: clamp(2.25rem, 4vw, 3rem);
+        margin-bottom: 1rem;
+        text-align: center;
+        color: rgb(74, 71, 62);
+    }
+
+    .text h3 {
+        margin-bottom: 1rem;
+        color: rgb(74, 71, 62);
+    }
+
+    .text p {
+        margin-bottom: 1rem;
+        color: rgb(74, 71, 62);
+    }
+
+.image {
+    position: static;
+    width: 20vw;
+    padding: 10px;
+    margin: 0 30px 0 30px;
+    right: 0;
+    border-radius: 24px;
+}
+
+    .image img {
+        max-width: 100%; /* ќграничиваем максимальную ширину изображени€ */
+        height: auto; /* —охран€ем соотношение сторон изображени€ */
+        transition: transform 0.3s;
+    }
+
+        .image img:hover {
+            transform: scale(1.1); /* ”величиваем изображение на 10% при наведении */
+        }
+
+article h2 {
+    font-family: 'FontFamily', Arial, sans-serif;
+    font-size: 24px;
+    font-style: italic;
+    letter-spacing: 10px;
+    padding: 100px 0 0 0;
+    font-size: clamp(2.25rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+article ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+article li {
+    background-color: white;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+article img {
+    vertical-align: middle;
+}

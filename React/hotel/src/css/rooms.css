@@ -1,0 +1,98 @@
+.card-wrapper {
+  min-height: 35ch;
+  position: relative;
+  perspective: 500em;
+}
+
+.card {
+  pointer-events: none;
+  --posx: 50%;
+  --posy: 50%;
+  --rotateX: 0;
+  --rotateY: 0;
+  position: absolute;
+  inset: 1rem;
+  border: 2px solid #fff2;
+  border-radius: 1em;
+  background-color: rgb(250, 240, 202);
+  box-shadow: rgba(191, 180, 140, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transform:
+    perspective(100em)
+    translatez(0em)
+    rotateY(var(--rotateX))
+    rotateX(var(--rotateY));
+}
+
+.button-card{
+  pointer-events: auto;
+}
+
+.image-card{
+  pointer-events: none;
+margin: 30px 0 0 0;
+  height:200px;
+  --posx: 50%;
+  --posy: 50%;
+  --rotateX: 0;
+  --rotateY: 0;
+  border-radius: 1em;
+  box-shadow: rgba(191, 180, 140, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transform:
+    perspective(100em)
+    translatez(0em)
+    rotateY(var(--rotateX))
+    rotateX(var(--rotateY));
+}
+
+@keyframes reset-card{
+  to {
+    background-position: 50% 50%;
+    transform:
+      rotateY(0)
+      rotateX(0);
+  }
+}
+
+
+.all-item {
+	display: grid;
+	grid-template-rows: 5fr;
+	grid-gap: 10px;
+}
+.api {
+	grid-row: 0;
+}
+.but1 {
+	grid-row: 1;
+}
+.but2 {
+	grid-row: 2;
+}
+.but3 {
+	grid-row: 3;
+}
+.but5 {
+	grid-row: 5;
+}
+ul {
+	grid-row: 4;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+	grid-gap: 20px;
+	list-style: none;
+	padding: 30px;
+	margin: 30px;
+	align-items: center;
+	text-align: center;
+}
+
+	ul li {
+		padding: 1.5rem;
+		border-radius: 24px;
+	}
+
+.name-room {
+	font-weight: 600;
+	margin-bottom: 1rem;
+	text-align: center;
+}

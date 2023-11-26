@@ -1,0 +1,57 @@
+/* Стилизация заголовка страницы */
+h1 {
+    font-size: clamp(2.25rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Контейнер для сотрудников */
+/*ul {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}*/
+
+/* Стилизация каждой вакансии */
+li {
+    float: left;
+    background-color: rgb(188,222,191);
+    box-shadow: rgba(191, 180, 140, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    width: 300px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 24px;
+    list-style-type: none;
+}
+
+    /* Стилизация заголовка вакансии (h2) */
+    li h2 {
+        font-size: 18px;
+        margin: 0;
+    }
+
+    /* Стилизация описания вакансии (p) */
+    li p[itemprop="description"] {
+        font-size: 14px;
+        margin: 10px 0;
+    }
+
+    /* Стилизация требований (p) */
+    li p span[itemprop="qualifications"] {
+        font-weight: bold;
+    }
+
+        /* Стилизация ссылок в требованиях */
+        li p span[itemprop="qualifications"] a {
+            text-decoration: underline;
+        }
+
+/* Очистка float для предотвращения смешивания элементов */
+ul:after {
+    content: "";
+    display: table;
+    clear: both;
+}

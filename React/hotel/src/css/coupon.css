@@ -1,0 +1,47 @@
+/* Стилизация заголовка страницы */
+h1 {
+    font-size: clamp(2.25rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Стилизация таблицы */
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 20px auto;
+    border-radius: 40px;
+    overflow: hidden;
+    box-shadow: rgba(191, 180, 140, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+/* Стилизация заголовков таблицы */
+th {
+    background-color: rgb(193,176,99); 
+    color: #fff; 
+    text-align: center;
+    padding: 10px;
+}
+
+/* Стилизация строк таблицы */
+tr:nth-child(even) {
+    background-color: rgb(188,222,191);
+}
+tr:nth-child(2n+1) {
+    background-color: rgb(249,230,149);
+}
+
+/* Горизонтальное и вертикальное выравнивание в ячейках */
+td, th {
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+}
+
+    /* Стилизация пустых ячеек */
+    td:empty::before {
+        content: "Empty"; /* Текст для пустых ячеек */
+        color: #e74c3c; /* Цвет текста */
+        background-color: white;
+        display: block;
+    }

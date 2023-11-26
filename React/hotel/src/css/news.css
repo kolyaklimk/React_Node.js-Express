@@ -1,0 +1,90 @@
+/* Стилизация контейнера для новостей */
+ul {
+    list-style-type: none;
+    columns: 3; /* Устанавливаем количество колонок */
+    column-gap: 30px; /* Расстояние между колонками */
+}
+
+    /* Стилизация каждой новостной статьи */
+    ul li {
+        background-color: rgb(250, 240, 202);
+        box-shadow: rgba(191, 180, 140, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        padding: 1.5rem;
+        border-radius: 24px;
+        margin-bottom: 30px;
+        break-inside: avoid;
+    }
+
+        /* Стилизация заголовка новостной статьи */
+        ul li h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: rgb(74, 71, 62);
+        }
+
+        /* Стилизация изображения */
+        ul li img {
+            display: block;
+            margin: 0 auto;
+            border-radius: 10px;
+            width: 90%;
+            transition: transform 0.3s;
+        }
+
+            ul li img:hover {
+                transform: scale(1.1); /* Увеличиваем изображение на 10% */
+            }
+
+        /* Стилизация краткой информации с управлением переполнением и многоточием */
+        ul li p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: rgb(74, 71, 62);
+        }
+
+        /* Стилизация кнопки "Читать далее" */
+        ul li a {
+            text-align: center;
+            display: block;
+            margin: 0 auto;
+            color: rgb(74, 71, 62);
+            width: 200px;
+            padding: 5px 10px;
+            text-decoration: none;
+            transition: background-color 0.5s, border-radius 0.5s;
+        }
+            /* Новые ссылки */
+            ul li a:link {
+                background-color: rgb(193, 176, 99);
+                border-radius: 40px;
+            }
+
+            /* Посещенные ссылки */
+            ul li a:visited {
+                background-color: rgb(188, 222, 191);
+                border-radius: 10px;
+            }
+
+            /* При наведении подчеркиваем */
+            ul li a:hover {
+                background-color: rgb(188, 222, 191);
+                border-radius: 10px;
+            }
+            /* При активации */
+            ul li a:active {
+                background-color: white;
+                border-radius: 10px;
+            }
+
+.myimg {
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+    width: 90%;
+    transition: transform 0.3s;
+}
+
+    .myimg:hover {
+        transform: scale(1.1); /* Увеличиваем изображение на 10% */
+    }

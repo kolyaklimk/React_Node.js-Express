@@ -1,0 +1,54 @@
+/* Стилизация заголовка */
+h1 {
+    font-size: clamp(2.25rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Стилизация контейнера для FAQ */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Стилизация каждого вопроса */
+li {
+    margin: 30px;
+}
+
+/* Стилизация элемента <details> */
+details {
+    background-color: rgb(250, 240, 202);
+    box-shadow: rgba(191, 180, 140, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border-radius: 30px;
+    padding: 10px;
+    cursor: pointer;
+    user-select: none;
+    max-height: 50px;
+    transition: max-height 0.5s ease;
+}
+
+/* Стилизация элемента <summary> (заголовка вопроса) */
+summary {
+    font-weight: 600;
+    color: rgb(74, 71, 62);
+}
+
+/* Стилизация вопроса */
+.question {
+    color: rgb(74, 71, 62);
+}
+
+/* Стилизация даты */
+.date {
+    color: #e76f51;
+}
+
+/* Стилизация развернутого ответа */
+details[open] {
+    background-color: rgb(188,222,191);
+    font-weight: 600;
+    color: rgb(74, 71, 62);
+    max-height: 500px;
+}

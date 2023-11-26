@@ -1,0 +1,81 @@
+.date{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+     opacity: 1;
+    transform: translate(-50%, -50%);
+    z-index: 2000;
+    transition: opacity 1s;
+}
+
+.loader2 {
+    background-color: rgb(255, 248, 225);
+    width: 100vw;
+    height: 100vh;
+     opacity: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1999;
+    transition: opacity 1s;
+}
+
+    .animating {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+/* Стилизация заголовка "Отзывы" */
+h1 {
+	font-size: clamp(2.25rem, 4vw, 3rem);
+	margin-bottom: 1rem;
+	text-align: center;
+}
+
+/* Стилизация элементов списка отзывов */
+ul {
+	list-style-type: none;
+}
+
+li {
+	background-color: rgb(250, 240, 202);
+	box-shadow: rgba(191, 180, 140, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+	margin: 30px;
+	padding: 1.5rem;
+	border-radius: 24px;
+}
+
+/* Стилизация текста "Автор" */
+p[itemprop="author"] {
+	font-weight: bold; /* Настройка жирности шрифта */
+}
+
+/* Стилизация текста "Оценка" */
+p[itemprop="reviewRating"] {
+	font-style: italic; /* Настройка стиля шрифта (курсив) */
+}
+
+/* Стилизация текста "Дата" */
+p[itemprop="datePublished"] {
+	font-size: 0.8rem; /* Настройка размера шрифта */
+	color: #777; /* Настройка цвета текста */
+}
+
+/* Стилизация кнопки "Добавить отзыв" */
+label.review {
+	display: block;
+	color: rgb(74, 71, 62);
+	border-radius: 40px;
+	width: 200px;
+	padding: 5px 10px;
+	background-color: rgb(193,176,99);
+	text-decoration: none;
+	transition: background-color 0.5s, border-radius 0.5s;
+	margin: 0 auto;
+	text-align: center;
+}
+
+	label.review:hover {
+		background-color: rgb(188,222,191);
+		border-radius: 10px;
+	}

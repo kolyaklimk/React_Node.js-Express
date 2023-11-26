@@ -1,0 +1,152 @@
+﻿.button-1 {
+    text-align: center;
+    color: rgb(74, 71, 62);
+    border-radius: 40px;
+    width: 200px;
+    cursor: pointer;
+    padding: 5px 10px;
+    background-color: rgb(193, 176, 99);
+    text-decoration: none;
+    transition: background-color 0.5s, border-radius 0.5s;
+}
+
+    .button-1:hover {
+        background-color: rgb(188, 222, 191);
+        border-radius: 10px;
+    }
+
+
+.input-1 {
+    width: 200px;
+    padding: 5px 10px;
+    border: 2px solid rgb(74, 71, 62);
+    border-radius: 40px;
+    color: rgb(74, 71, 62);
+    background-color: rgb(193, 176, 99);
+    transition: background-color 0.5s, border-radius 0.5s;
+}
+
+    .input-1:hover, .input-1:focus {
+        background-color: rgb(188, 222, 191);
+        border-radius: 10px;
+    }
+
+
+.select-1 {
+    display: inline-block;
+    position: relative;
+    font-size: 1.5rem;
+    margin: 5px;
+    background-color: rgb(193, 176, 99);
+    color: rgb(74, 71, 62);
+    border-radius: 40px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+    .select-1 select {
+        appearance: none;
+        border: none;
+        background: transparent;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        color: rgb(74, 71, 62);
+        outline: none;
+        cursor: pointer;
+    }
+
+    .select-1::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        pointer-events: none;
+    }
+
+    .select-1:hover {
+        background-color: rgb(188, 222, 191);
+        border-radius: 10px;
+    }
+
+
+.center {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+}
+
+/* Отступы и поля */
+p {
+    margin: 10px;
+    padding: 10px;
+}
+
+/* Красная строка */
+p {
+    text-indent: 2em; /* Размер отступа красной строки */
+}
+
+/* Преобразование текста в заголовках в верхний регистр */
+h1, h2, h3 {
+    text-transform: uppercase;
+}
+
+/* Межстрочный интервал */
+p {
+    line-height: 1.5; /* Высота строки (можете изменить на свой вкус) */
+}
+
+/* Текст в капительных буквах */
+.capitalize {
+    font-variant: small-caps;
+}
+
+/* Интервал между словами и символами */
+p {
+    word-spacing: 2px; /* Интервал между словами */
+    letter-spacing: 1px; /* Интервал между символами */
+}
+
+/* Перенос и разрыв слов */
+p {
+    word-wrap: break-word; /* Разрыв слов по нужде */
+}
+
+/* Шрифты и выравнивание текста */
+p {
+    font-family: 'PrimaryFont', Arial, sans-serif;
+    font-size: 16px; /* Размер шрифта */
+    text-align: left; /* Выравнивание текста (center, left, right) */
+}
+
+/* Позиционирование блоков для расположения на странице */
+p {
+    position: relative; /* Относительное позиционирование */
+    top: 10px; /* Перемещение блока вверх на 10px (можете изменить) */
+    left: 20px; /* Перемещение блока влево на 20px (можете изменить) */
+}
+
+input[type="checkbox"]:checked, input[type="radio"]:checked {
+    width: 100px;
+    height: 100px;
+}
+
+.input-1[type="number"]:out-of-range {
+    background-color: green;
+}
+
+.input-1:disabled {
+    opacity: 0.5;
+}
+
+.input-1[required] {
+    background-color: lightpink;
+}
+
+.input-1:enabled {
+    border: 2px solid green;
+}

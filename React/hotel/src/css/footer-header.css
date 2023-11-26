@@ -1,0 +1,91 @@
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+}
+
+@media (min-width: 751px) {
+    .fixed-menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 96%;
+        background: linear-gradient(to bottom, rgb(255, 248, 225) 70%, transparent);
+        z-index: 100;
+    }
+}
+
+@media (max-width: 750px) {
+    .fixed-menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 96%;
+        background: linear-gradient(to bottom, yellow 70%, transparent);
+        z-index: 100;
+    }
+}
+
+
+.logo {
+    width: max-content;
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: rgb(74, 71, 62);
+}
+
+.menu-items {
+    width: max-content;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.my-button {
+    font-size: 1.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: rgb(74, 71, 62);
+    position: relative;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+    .my-button::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: rgb(74, 71, 62);
+        transition: width 0.5s;
+    }
+
+    .my-button:hover::before {
+        width: 100%;
+    }
+
+    .my-button:not(:hover)::before {
+        width: 0;
+    }
+
+footer {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}

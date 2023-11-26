@@ -1,0 +1,148 @@
+/* Стили для элементов списка и таблицы */
+ul li:first-child,
+ol li:first-child,
+tr:first-child {
+    font-weight: bold;
+}
+
+
+/* начинается */
+em[itemprop^="numberOf"] {
+    font-weight: bold;
+}
+
+/* заканчивается */
+img[src$=".png"] {
+    border: 1px solid #ccc;
+}
+/*определённое*/
+h2[itemprop="event"] {
+    font-style: italic;
+}
+
+ul li:last-child,
+ol li:last-child,
+tr:last-child {
+    font-style: italic;
+}
+
+ul li:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+/* Стили для элементов формы */
+input:enabled {
+    border: 2px solid green;
+}
+
+input:disabled {
+    background-color: lightgray;
+}
+
+input:required {
+    font-weight: bold;
+}
+
+input:invalid {
+    border: 2px solid red;
+}
+
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+    background-color: yellow;
+}
+
+/* Стили для разных языков цитат */
+q[lang="en"]::before {
+    content: "'";
+}
+
+q[lang="en"]::after {
+    content: "'";
+}
+
+/* Выделение первой буквы текста абзаца */
+p::first-letter {
+    font-size: 2rem;
+    color: blue;
+}
+
+/* Добавление контекста в начале и конце фрагмента текста */
+p::before {
+    content: "S: ";
+    font-weight: bold;
+}
+
+p::after {
+    content: " E.";
+}
+
+/* Оформление маркеров - символами юникода для списка */
+li::before {
+    content: "\2023"; /* Устанавливаем маркер в виде точки */
+    margin-right: 20px;
+}
+
+/* Изменение стиля при выделении текста */
+::selection {
+    background-color: yellow;
+    color: blue;
+}
+
+.parent > p {
+    color: blue;
+}
+
+.blue.yellow {
+    background-color: yellow;
+    color: blue;
+}
+
+#logo {
+    transform: rotate(10deg);
+}
+
+#history ul {
+    list-style-type: none;
+}
+
+/* Стили для реквизитов компании */
+#details {
+    font-weight: bold; /* Жирный шрифт для реквизитов */
+}
+
+/* Стили для видео и аудио */
+#media {
+    width: 70%;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+}
+
+#certificate {
+    border: 2px solid #000; /* Граница изображения */
+    background-image: url('certificate-background.jpg'); /* Фоновое изображение */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 20px;
+    text-align: center;
+    font-family: 'PrimaryFont', Arial, sans-serif; /* Настройка шрифта */
+    font-size: 24px;
+    z-index: 1; /* z-index для слоя */
+}
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+td {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+}
