@@ -26,7 +26,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 const app = express();
-app.use(express.json());
+app.use(express.json({ extended: true }));
 app.use('/uploads', express.static('uploads'));
 
 app.post('/upload', checkAdmin, upload.single('image'), (req, res) => {
@@ -50,7 +50,7 @@ app.get('/rooms/:id', RoomController.get);
 app.delete('/rooms/:id', checkAdmin, RoomController.remove);
 app.patch('/rooms/:id', checkAdmin, Validator.roomValidator, handleValidationErrors, RoomController.update);
 
-app.listen(4444, (err) => {
+app.listen(8000, (err) => {
     if (err) {
         return console.log(err);
     }
