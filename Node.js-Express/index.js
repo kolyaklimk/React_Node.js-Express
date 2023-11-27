@@ -34,7 +34,7 @@ app.post('/upload', checkAdmin, upload.single('image'), (req, res) => {
         url: `/uploads/${req.file.originalname}`
     });
 });
-
+ 
 app.post('/auth/login', Validator.loginValidator, handleValidationErrors, UserController.login);
 app.post('/auth/register', Validator.registerValidator, handleValidationErrors, UserController.register);
 
