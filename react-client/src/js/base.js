@@ -3,7 +3,7 @@ const base = () => {
         document.querySelector(".loader").classList.add("animating");
     });
 
-    /*
+    
     window.addEventListener('scroll', function () {
         var menu = document.querySelector('.menu');
         if (window.pageYOffset > 30) {
@@ -12,7 +12,7 @@ const base = () => {
             menu.classList.remove('fixed-menu');
         }
     });
-    */
+    
 }
 
 export default base;

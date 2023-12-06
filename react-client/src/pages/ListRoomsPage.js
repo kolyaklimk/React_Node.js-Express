@@ -71,7 +71,7 @@ export const ListRoomsPage = () => {
                 </div>
             )}
 
-            {isAuthenticated && (
+            {isAdmin && (
                 <div className="but2">
                     <label className="button-1" style={{ float: 'right' }} onClick={() => { navigate('/rooms/create'); }}>
                         Add
@@ -99,13 +99,6 @@ export const ListRoomsPage = () => {
                 </select>
             </div>
 
-
-            {/*(isAuthenticated || isAdmin) && (
-                <div className="api">
-                    <label>Quote: {timezoneContext.quote}</label><br />
-                    <label>Joke: {timezoneContext.joke}</label>
-                </div>
-            )*/}
             <ul>
                 {rooms.map((m) => (
                     <li className="card-wrapper" onClick={() => { navigate(`/rooms/${m._id}`); }}>
@@ -128,21 +121,11 @@ export const ListRoomsPage = () => {
                                 </button>
                             )}
                         </div>
-                        <img className="image-card" src={`/${m.photo}`} alt="image" />
+                        <img className="image-card" src={`http://localhost:8000/uploads/${m.photo}`} alt="image" />
                     </li>
                 ))}
                 {rooms.length === 0 && <li>No rooms</li>}
             </ul>
-            {/*
-            <header className="but5">
-                <div>
-                    <br />
-                    {timezoneContext.calendar}<br />
-                    <label>User Timezone: {timezoneContext.user_timezone} |</label>
-                    <label>Current Date: {timezoneContext.current_date}</label>
-                </div>
-            </header>
-            */}
         </div>
     );
 };

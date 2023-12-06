@@ -4,6 +4,7 @@ import multer from 'multer';
 import * as Validator from './validations.js';
 import * as UserController from './controllers/UserController.js';
 import * as RoomController from './controllers/RoomController.js';
+import * as ApiController from './controllers/ApiController.js';
 import * as CategoryController from './controllers/CategoryController.js';
 import checkAuth from './utilities/checkAuth.js';
 import checkAdmin from './utilities/checkAdmin.js';
@@ -34,7 +35,11 @@ app.post('/upload', checkAdmin, upload.single('image'), (req, res) => {
         url: `/uploads/${req.file.originalname}`
     });
 });
- 
+
+
+app.get('/api/joke', checkAuth, ApiController.getJoke);
+app.get('/api/quote', checkAuth, ApiController.getQuote);
+
 app.post('/auth/login', Validator.loginValidator, handleValidationErrors, UserController.login);
 app.post('/auth/register', Validator.registerValidator, handleValidationErrors, UserController.register);
 
@@ -49,6 +54,8 @@ app.post('/rooms', checkAdmin, Validator.roomValidator, handleValidationErrors, 
 app.get('/rooms/:id', RoomController.get);
 app.delete('/rooms/:id', checkAdmin, RoomController.remove);
 app.patch('/rooms/:id', checkAdmin, Validator.roomValidator, handleValidationErrors, RoomController.update);
+app.post('/rooms/booking', checkAuth, RoomController.booking);
+app.get('/rooms/booking/last', RoomController.getLastBooking);
 
 app.listen(8000, (err) => {
     if (err) {
