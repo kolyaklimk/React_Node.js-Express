@@ -92,7 +92,7 @@ export const RoomPage = () => {
                 }
             })
             await request(`/rooms/${roomId}`, 'PATCH', editedData, { Authorization: `Bearer ${token}` });
-            navigate(`/rooms/${roomId}`);
+            navigate(`/rooms`);
         } catch (e) {
             console.log(e);
         }

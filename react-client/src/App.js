@@ -1,9 +1,8 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ListRoomsPage } from './pages/ListRoomsPage';
 import { RoomPage } from './pages/RoomPage';
 import CreateRoomPage from './pages/CreateRoomPage.js';
-import { ProfilePage } from './pages/ProfilePage';
 import { LoginPage, RegisterPage } from './pages/AuthPage';
 import { MainPage } from './pages/MainPage';
 import { useAuth } from './hooks/auth.hook';
@@ -37,15 +36,14 @@ function App() {
                         </Route>
                         <Route path="rooms/:id" element={<RoomPage />} >
                         </Route>
-                        <Route path="rooms/create" element={<CreateRoomPage />} >
-                        </Route>
-                        <Route path="profile" element={<ProfilePage />} >
-                        </Route>
+                        {isAdmin && (
+                            <Route path="rooms/create" element={<CreateRoomPage />} >
+                            </Route>)}
                         <Route path="auth/login" element={<LoginPage />}>
                         </Route>
                         <Route path="auth/register" element={<RegisterPage />} >
                         </Route>
-                        <Route path="" element={<MainPage />} >
+                        <Route path="*" element={<MainPage />} >
                         </Route>
                     </Routes>
                 </main>

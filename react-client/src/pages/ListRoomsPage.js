@@ -63,14 +63,6 @@ export const ListRoomsPage = () => {
 
     return (
         <div className="all-item">
-            {isAdmin && isAuthenticated && (
-                <div className="but1">
-                    <label className="button-1" style={{ float: 'right' }} onClick={() => { navigate('/profile'); }}>
-                        Profile
-                    </label>
-                </div>
-            )}
-
             {isAdmin && (
                 <div className="but2">
                     <label className="button-1" style={{ float: 'right' }} onClick={() => { navigate('/rooms/create'); }}>
