@@ -142,5 +142,22 @@ const isValidPass = await bcrypt.compare(req.body.password, user._doc.passwordHa
             });
         }
 ```
+12. Также стоит отметить, что модели и контроллеры вынесены в отдельные папки, чтобы структурировать проект.
 
 <a name="head33"><h2>Разбор важных аспектов Front:</h2></a>
+1. Создать проект `npx create-react-app my-app`
+2. Чтобы установить необходимые библиотеки достаточно написать в консоли `npm i`
+3. Установка *router-dom* - `npm install react-touter-dom`. С помощью этой библиотеки удобно указывать пути к страницам.
+4. В файле *package.json* необходимо дописать прокси, чтобы клиент мог обращаться к серверу:
+```json
+"proxy": "http://localhost:8000"
+```
+5. Пример установки пути к странице в *App.js*:
+```html
+<BrowserRouter>
+    <Routes>
+        <Route path="rooms" element={<ListRoomsPage />}>
+        </Route>
+    </Routes>
+</BrowserRouter>
+```
