@@ -15,9 +15,9 @@
    
 <a name="head11"><h2>MongoDB</h2></a>
 
-1. Возможно потребуется VPN
-2. Зарегистрироваться на сайте [MongoDB](https://www.mongodb.com/) и выбрать бесплатный тариф
-3. Создать кластер
+1. Возможно потребуется VPN.
+2. Зарегистрироваться на сайте [MongoDB](https://www.mongodb.com/) и выбрать бесплатный тариф.
+3. Создать кластер.
 4. Чтобы подключить БД к приложению, требуется ссылка на эту БД. Чтобы её взять надо:
    - выбрать в списке DEPLOYMENT -> Database
    - В созданном кластере нажать на кнопку `Connect`
@@ -26,12 +26,12 @@
       ```python
       mongodb+srv://admin:<password>@cluster228.hdf1337.mongodb.net/?retryWrites=true&w=majority
       ```
-      где надо поменять данные в строке: *admin* на имя пользователя кластера, и *password* на его пароль
+      где надо поменять данные в строке: *admin* на имя пользователя кластера, и *password* на его пароль.
 
 <a name="head22"><h2>Разбор важных аспектов Backend:</h2></a>
 
-1. Для удобной работы с POST/GET/PUT/DELETE запросами скачать [Insomnia](insomnia)
-2. Скачать и установить последнюю версию LTS [node.js](https://nodejs.org/en)
+1. Для удобной работы с POST/GET/PUT/DELETE запросами скачать [Insomnia](insomnia).
+2. Скачать и установить последнюю версию LTS [node.js](https://nodejs.org/en).
 3. Для создания файла package.json прописать в консоли папки проекта: `npm init`
 4. Установить библиотеки:
    - `npm install bcrypt`
@@ -82,7 +82,7 @@ app.post('/upload', checkAdmin, upload.single('image'), (req, res) => {
     });
 });
 ```
-Таким образом картинки будут храниться в папке *uploads* и открываться по ссылке */uploads/{img name}*
+Таким образом картинки будут храниться в папке *uploads* и открываться по ссылке */uploads/{img name}*.
 
 9. Для того, чтобы хранить *Id* пользователя и другие полезные данные, можно использовать токен `JSON Web Token`
 ```javascript
@@ -97,13 +97,13 @@ const token = jwt.sign(
             },
         );
 ```
-В данном случае сохраняется *Id* и является ли пользователь админом. Также указано, что токен действителен 30 дней. И указан ключ, по которому будет происходить расшифровка токена - *'secret123'*
+В данном случае сохраняется *Id* и является ли пользователь админом. Также указано, что токен действителен 30 дней. И указан ключ, по которому будет происходить расшифровка токена - *'secret123'*.
 Расшифровка токена:
 ```javascript
 const token = (req.headers.authorization || '').replace(/Bearer\s?/, '');
 const decoded = jwt.verify(token, 'secret123');
 ```
-В данном случае *decoded* будет хранить в себе *decoded.admin* и *decoded._id*
+В данном случае *decoded* будет хранить в себе *decoded.admin* и *decoded._id*.
 
 10. Для валидации запросов, можно воспользоваться `express-validator`:
 ```javascript
@@ -170,45 +170,7 @@ const isValidPass = await bcrypt.compare(req.body.password, user._doc.passwordHa
             token, login, logout, _id, isAdmin, isAuthenticated, ready
         }}>
 ```
-Провайдер в свою очерез использует хук:
-```javascript
-const storageName = 'userData'
+Провайдер в свою очерез использует хук *auth.hook.js*.
+Стоит обратить внимание, что важные данные как токен и тд храняться в *localStorage*.
 
-export const useAuth = () => {
-    const [token, setToken] = useState(null)
-    const [ready, setReady] = useState(false)
-    const [userId, setUserId] = useState(null)
-    const [isAdmin, setAdmin] = useState(null)
-
-    const login = useCallback((jwtToken, id, admin) => {
-        setToken(jwtToken)
-        setUserId(id)
-        setAdmin(admin)
-
-        localStorage.setItem(storageName, JSON.stringify({
-            userId: id, token: jwtToken, isAdmin: admin
-        }))
-    }, [])
-
-
-    const logout = useCallback(() => {
-        setToken(null)
-        setUserId(null)
-        setAdmin(null)
-        localStorage.removeItem(storageName)
-    }, [])
-
-    useEffect(() => {
-        const data = JSON.parse(localStorage.getItem(storageName))
-
-        if (data && data.token) {
-            login(data.token, data.userId, data.isAdmin)
-        }
-        setReady(true)
-    }, [login])
-
-
-    return { login, logout, token, userId, isAdmin, ready }
-}
-```
-Можно обратить внимание, что важные данные как токен и тд храняться в *localStorage*.
+7. Для упрощения запросов к серверу, был написан хук *http.hook.js*.
