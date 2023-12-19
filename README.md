@@ -17,11 +17,11 @@
    - После чего в пункте *Connect to your application* нажать на кнопку `Drivers`
    - Внизу будет код, следующего вида:
       ```python
-      mongodb+srv://admin:<password>@cluster228.qsy1337.mongodb.net/?retryWrites=true&w=majority
+      mongodb+srv://admin:<password>@cluster228.hdf1337.mongodb.net/?retryWrites=true&w=majority
       ```
       где надо поменять данные в строке: *admin* на имя пользователя кластера, и *password* на его пароль
 
-## Разбор Backend:
+## Разбор важных аспектов Backend:
 1. Для удобной работы с POST/GET/PUT/DELETE запросами скачать [Insomnia](insomnia)
 2. Скачать и установить последнюю версию LTS [node.js](https://nodejs.org/en)
 3. Для создания файла package.json прописать в консоли папки проекта: `npm init`
@@ -38,9 +38,94 @@
    "type": "module"
   ``` 
 6. Чтобы настроить *nodemon* в package.json надо написать:
-   ```json
-   "scripts": {
-    "startapp": "nodemon index.js"
-     }
-  После чего проект надо запускать командой `npm run startapp`
-  
+```json
+"scripts": {
+   "startapp": "nodemon index.js"
+}
+```
+   После чего проект надо запускать командой `npm run startapp`
+   
+7. Подключение к MongoDB:
+```javascript
+   mongoose.connect('mongodb+srv://admin:admin@cluster228.hdf1337.mongodb.net/blog?retryWrites=true&w=majority')
+    .then(() => console.log('DB OK'))
+    .catch((err) => console.log('DB error', err));
+```
+
+8. Для того, чтобы хранить изображения на сервере, надо использовать `Multer`. Так выглядит настройка в *index.js*:
+```javascript
+const storage = multer.diskStorage({
+    destination: (_, __, cb) => {
+        cb(null, 'uploads');
+    },
+    filename: (_, file, cb) => {
+        cb(null, file.originalname);
+    }
+});
+
+const upload = multer({ storage });
+
+app.use(express.json({ extended: true }));
+app.use('/uploads', express.static('uploads'));
+
+app.post('/upload', checkAdmin, upload.single('image'), (req, res) => {
+    res.json({
+        url: `/uploads/${req.file.originalname}`
+    });
+});
+```
+Таким образом картинки будут храниться в папке *uploads* и открываться по ссылке */uploads/{img name}*
+
+9. Для того, чтобы хранить *Id* пользователя и другие полезные данные, можно использовать токен `JSON Web Token`
+```javascript
+const token = jwt.sign(
+            {
+                _id: user._id,
+                admin: user.admin,
+            },
+            'secret123',
+            {
+                expiresIn: '30d',
+            },
+        );
+```
+В данном случае сохраняется *Id* и является ли пользователь админом. Также указано, что токен действителен 30 дней. И указан ключ, по которому будет происходить расшифровка токена - *'secret123'*
+Расшифровка токена:
+```javascript
+const token = (req.headers.authorization || '').replace(/Bearer\s?/, '');
+const decoded = jwt.verify(token, 'secret123');
+```
+В данном случае *decoded* будет хранить в себе *decoded.admin* и *decoded._id*
+
+10. Для валидации запросов, можно воспользоваться `express-validator`:
+```javascript
+export const registerValidator = [
+    body('email', 'Error email').isEmail(),
+    body('password', 'Password should be more then 5 symbols').isLength({ min: 5 }),
+    body('firstName', 'FirstName should be more then 3 symbols').isLength({ min: 3 }),
+    body('lastName', 'lastName should be more then 3 symbols').isLength({ min: 3 }),
+    body('patronymic', 'Patronymic should be more then 3 symbols').isLength({ min: 3 }),
+    body('phoneNumber', 'Error phoneNumber').isMobilePhone(),
+    body('birthDate', 'Error birthDate').isDate(),
+    body('birthDate', 'BirthDate should be more then 18').custom((value) => {
+        const age = (new Date().getTime() - new Date(value).getTime()) / (365 * 24 * 60 * 60 * 1000);
+        return age >= 18;
+    }),
+];
+```
+Данная библиотека имеет различные методы для проверки данных, такие как *isEmail()*, *isMobilePhone()* и тд. В *body* сначала передаётся имя поля, которое надо проверить, а после текст, если валидация не пройдёт. После *body* идут условия проверки. Также можно написать свою собственную проверку с помощью *custom*
+
+11. Чтобы зашифровать пароль, можно воспользоваться `BCrypt`:
+```javascript
+await bcrypt.hash(req.body.password, await bcrypt.genSalt(10))
+```
+Сравнение зашифрованного пароля и пароля, который отправил пользователь на сервер:
+```javascript
+const isValidPass = await bcrypt.compare(req.body.password, user._doc.passwordHash);
+
+        if (!isValidPass) {
+            return req.status(404).json({
+                message: 'Error email/password',
+            });
+        }
+```
