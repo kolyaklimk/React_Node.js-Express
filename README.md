@@ -1,13 +1,20 @@
 # React + Node.js-Express
  
+[MongoDB](#head11)
+
+[Разбор важных аспектов Backend](#head22) 
+
+[Разбор важных аспектов Front](#head33) 
+
 ## Backend Node.js: 
 1. Express + Validator (веб-сервер /валидация запросов)
 2. MongoDB/Mongoose (работа с базой данных)
 3. JSON Web Token (аутентификация /авторизация)
 4. Multer (загрузка файлов/изображений)
 5. BCrypt (шифрование пароля)
+   
+<a name="head11"><h2>MongoDB</h2></a>
 
-## MongoDB
 1. Возможно потребуется VPN
 2. Зарегистрироваться на сайте [MongoDB](https://www.mongodb.com/) и выбрать бесплатный тариф
 3. Создать кластер
@@ -21,7 +28,8 @@
       ```
       где надо поменять данные в строке: *admin* на имя пользователя кластера, и *password* на его пароль
 
-## Разбор важных аспектов Backend:
+<a name="head22"><h2>Разбор важных аспектов Backend:</h2></a>
+
 1. Для удобной работы с POST/GET/PUT/DELETE запросами скачать [Insomnia](insomnia)
 2. Скачать и установить последнюю версию LTS [node.js](https://nodejs.org/en)
 3. Для создания файла package.json прописать в консоли папки проекта: `npm init`
@@ -113,13 +121,18 @@ export const registerValidator = [
     }),
 ];
 ```
-Данная библиотека имеет различные методы для проверки данных, такие как *isEmail()*, *isMobilePhone()* и тд. В *body* сначала передаётся имя поля, которое надо проверить, а после текст, если валидация не пройдёт. После *body* идут условия проверки. Также можно написать свою собственную проверку с помощью *custom*
+Данная библиотека имеет различные методы для проверки данных, такие как *isEmail()*, *isMobilePhone()* и тд. В *body* сначала передаётся имя поля, которое надо проверить, а после текст, если валидация не пройдёт. После *body* идут условия проверки. Также можно написать свою собственную проверку с помощью *custom*.
+
+Пример использования валидации:
+```javascript
+app.post('/auth/register', Validator.registerValidator, handleValidationErrors, UserController.register);
+```
 
 11. Чтобы зашифровать пароль, можно воспользоваться `BCrypt`:
 ```javascript
 await bcrypt.hash(req.body.password, await bcrypt.genSalt(10))
 ```
-Сравнение зашифрованного пароля и пароля, который отправил пользователь на сервер:
+Сравнение зашифрованного пароля и пароля, который пользователь отправил на сервер:
 ```javascript
 const isValidPass = await bcrypt.compare(req.body.password, user._doc.passwordHash);
 
@@ -129,3 +142,5 @@ const isValidPass = await bcrypt.compare(req.body.password, user._doc.passwordHa
             });
         }
 ```
+
+<a name="head33"><h2>Разбор важных аспектов Front:</h2></a>
