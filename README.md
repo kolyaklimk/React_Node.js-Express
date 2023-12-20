@@ -6,13 +6,7 @@
 
 [Frontend](#head33) 
 
-## Backend Node.js: 
-1. Express + Validator (веб-сервер /валидация запросов)
-2. MongoDB/Mongoose (работа с базой данных)
-3. JSON Web Token (аутентификация /авторизация)
-4. Multer (загрузка файлов/изображений)
-5. BCrypt (шифрование пароля)
-   
+
 <a name="head11"><h2>MongoDB</h2></a>
 
 1. Возможно потребуется VPN.
@@ -22,24 +16,25 @@
    - выбрать в списке DEPLOYMENT -> Database
    - В созданном кластере нажать на кнопку `Connect`
    - После чего в пункте *Connect to your application* нажать на кнопку `Drivers`
-   - Внизу будет код, следующего вида:
+   - Внизу будет код следующего вида:
       ```python
       mongodb+srv://admin:<password>@cluster228.hdf1337.mongodb.net/?retryWrites=true&w=majority
       ```
       где надо поменять данные в строке: *admin* на имя пользователя кластера, и *password* на его пароль.
 
-<a name="head22"><h2>Backend:</h2></a>
 
+<a name="head22"><h2>Backend:</h2></a>
+   
 1. Для удобной работы с POST/GET/PUT/DELETE запросами скачать [Insomnia](insomnia).
 2. Скачать и установить последнюю версию LTS [node.js](https://nodejs.org/en).
 3. Для создания файла package.json прописать в консоли папки проекта: `npm init`
 4. Установить библиотеки:
-   - `npm install bcrypt`
-   - `npm install express`
-   - `npm install express-validator`
-   - `npm install jsonwebtoken`
-   - `npm install mongoose`
-   - `npm install multer`
+   - `npm install bcrypt` - шифрование пароля,
+   - `npm install express` - веб-сервер,
+   - `npm install express-validator` - валидация запросов,
+   - `npm install jsonwebtoken` - аутентификация/авторизация,
+   - `npm install mongoose` - работа с базой данных,
+   - `npm install multer` - загрузка файлов/изображений,
    - `npm install nodemon` - автоматически перезапускает проект при обновлении файлов. 
 5. Для работы с модулями в package.json добавить:
 ```json
@@ -121,7 +116,7 @@ export const registerValidator = [
     }),
 ];
 ```
-Данная библиотека имеет различные методы для проверки данных, такие как *isEmail()*, *isMobilePhone()* и тд. В *body* сначала передаётся имя поля, которое надо проверить, а после текст, если валидация не пройдёт. После *body* идут условия проверки. Также можно написать свою собственную проверку с помощью *custom*.
+Данная библиотека имеет различные методы для проверки данных, такие как *isEmail()*, *isMobilePhone()* и тд. В *body* сначала передаётся название переменной, которое надо проверить, а после текст ошибки, если валидация не пройдёт. После *body* идут условия проверки. Также можно написать свою собственную проверку с помощью *custom*. 
 
 Пример использования валидации:
 ```javascript
@@ -146,7 +141,7 @@ const isValidPass = await bcrypt.compare(req.body.password, user._doc.passwordHa
 
 <a name="head33"><h2>Frontend:</h2></a>
 
-1. Создать проект `npx create-react-app my-app`
+1. Создать проект: `npx create-react-app my-app`
 2. Чтобы установить необходимые библиотеки достаточно написать в консоли `npm i`
 3. Установка *router-dom* - `npm install react-touter-dom`. С помощью этой библиотеки удобно указывать пути к страницам.
 4. Запустить *React* приложение - `npm start`
@@ -170,7 +165,23 @@ const isValidPass = await bcrypt.compare(req.body.password, user._doc.passwordHa
             token, login, logout, _id, isAdmin, isAuthenticated, ready
         }}>
 ```
-Провайдер в свою очередь использует хук *auth.hook.js*.
+Провайдер в свою очередь использует хук *auth.hook.js*. Пример использования: 
+```javascript
+const auth  = useContext(AuthContext);
+auth.logout();
+```
 Стоит обратить внимание, что важные данные как токен и тд хранятся в *localStorage*.
 
-7. Для упрощения запросов к серверу, был написан хук *http.hook.js*.
+7. Для упрощения запросов к серверу, был написан хук *http.hook.js*. Пример использования: 
+```javascript
+const { request } = useHttp();
+const fetchData = useCallback(async () => {
+        try {
+            const data2 = await request('/categories', 'GET', null);
+            setСategories(data2);
+            const data = await request('/rooms', 'GET', null);
+            setRooms(data);
+            setOriginalRooms(data);
+        } catch (e) { }
+    }, [request]);
+```
